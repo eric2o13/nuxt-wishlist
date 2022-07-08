@@ -1,0 +1,94 @@
+{
+    "data": [
+      {
+        "id": 1,
+        "title": "Ultra Marine Blue",
+        "description": "A description of some blue paint.",
+        "imagePath": "https://dummyimage.com/450x200/00F/fff",
+        "price": {
+          "symbol": "$",
+          "value": 50.00
+        }
+      },
+      {
+        "id": 2,
+        "title": "Horizon blue",
+        "imagePath": "https://dummyimage.com/450x200/5EF/fff",
+        "description": "A description of some blue paint.",
+        "price": {
+          "symbol": "$",
+          "value": 15.00
+        }
+      },
+      {
+        "id": 3,
+        "title": "Cyan",
+        "imagePath": "https://dummyimage.com/450x200/3CE/fff",
+        "description": "A description of some blue paint.",
+        "price": {
+          "symbol": "$",
+          "value": 32.25
+        }
+      },
+      {
+        "id": 4,
+        "title": "Lavender",
+        "imagePath": "https://dummyimage.com/450x200/B6e/fff",
+        "description": "A description of some purple paint.",
+        "price": {
+          "symbol": "$",
+          "value": 11.50
+        }
+      },
+      {
+        "id": 5,
+        "title": "Magenta",
+        "imagePath": "https://dummyimage.com/450x200/B2A/fff",
+        "description": "A description of some purple paint.",
+        "price": {
+          "symbol": "$",
+          "value": 55.50
+        }
+      },
+      {
+        "id": 6,
+        "title": "Teal",
+        "imagePath": "https://dummyimage.com/450x200/red/fff",
+        "description": "A description of some blue paint.",
+        "price": {
+          "symbol": "$",
+          "value": 11.50
+        }
+      },
+      {
+        "id": 7,
+        "title": "Green",
+        "imagePath": "https://dummyimage.com/450x200/0C0/fff",
+        "description": "A description of some green paint.",
+        "price": {
+          "symbol": "$",
+          "value": 11.50
+        }
+      },
+      {
+        "id": 8,
+        "title": "Green gold",
+        "imagePath": "https://dummyimage.com/450x200/DD0/fff",
+        "description": "A description of some green paint.",
+        "price": {
+          "symbol": "$",
+          "value": 11.50
+        }
+      },
+      {
+        "id": 9,
+        "title": "Perylene maroon",
+        "imagePath": "https://dummyimage.com/450x200/d33535/fff",
+        "description": "A description of red green paint.",
+        "price": {
+          "symbol": "$",
+          "value": 11.50
+        }
+      }
+    ]
+  }
