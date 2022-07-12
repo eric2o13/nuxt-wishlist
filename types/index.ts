@@ -1,3 +1,8 @@
+export interface ProductPrice {
+  symbol: string;
+  value: number;
+}
+
 export interface Product {
     readonly id: number;
     title: string;
@@ -9,11 +14,6 @@ export interface Product {
 export interface WishListItem {
     product: Product;
     quantity: number;
-}
-
-export interface ProductPrice {
-    symbol: string;
-    value: number;
 }
 
 export interface WishListState {
@@ -29,4 +29,3 @@ export interface AppState {
     wishList: WishListState;
     product: ProductState;
 }
-

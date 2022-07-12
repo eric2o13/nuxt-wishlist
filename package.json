@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
+    "lint": "eslint --ext .ts,.js,.vue .",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "jest"
@@ -15,6 +16,7 @@
     "bootstrap-icons": "^1.8.3",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.19.3",
+    "eslint": "^8.19.0",
     "nuxt": "^2.15.8",
     "vue": "^2.6.14",
     "vue-server-renderer": "^2.6.14",
@@ -24,6 +26,7 @@
   "devDependencies": {
     "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@types/jest": "^28.1.4",
     "@vue/test-utils": "^1.3.0",
     "babel-core": "7.0.0-bridge.0",

@@ -1,24 +1,23 @@
-import { mount } from '@vue/test-utils';
-import AppHeader from "@/components/AppHeader.vue";
-import NuxtLogo from "@/components/NuxtLogo.vue";
-import {WishListItem} from "@/types";
-import {MockAppState, MockWishListItem, MockWishListItems} from "@/mocks";
+import { mount } from '@vue/test-utils'
+import AppHeader from '@/components/AppHeader.vue'
+import NuxtLogo from '@/components/NuxtLogo.vue'
+import { WishListItem } from '@/types'
+import { MockAppState, MockWishListItem, MockWishListItems } from '@/mocks'
 
 describe('AppHeader.vue', () => {
-
   const createWrapper = (wishListOverrides = {}, productOverrides = {}) => {
     const $store = {
       state: MockAppState(wishListOverrides, productOverrides)
     }
     return mount(AppHeader, {
-        mocks: {
-          $store
-        },
-        components: {
-          NuxtLogo
-        }
-    });
-  };
+      mocks: {
+        $store
+      },
+      components: {
+        NuxtLogo
+      }
+    })
+  }
 
   it('Is a Vue instance', () => {
     const wrapper = createWrapper()
@@ -26,33 +25,29 @@ describe('AppHeader.vue', () => {
   })
 
   it('Has a company logo', () => {
-    const wrapper = createWrapper();
-    const selector = '#app-logo';
-    expect(wrapper.get(selector)).toBeTruthy();
+    const wrapper = createWrapper()
+    const selector = '#app-logo'
+    expect(wrapper.get(selector)).toBeTruthy()
   })
 
   it('Has a favorites button, showing the amount of wish list items', () => {
-
-    const list: WishListItem[] = [MockWishListItem];
+    const list: WishListItem[] = [MockWishListItem]
     const wrapper = createWrapper({
-       items: list,
-    });
+      items: list
+    })
 
-    const selector = '.favorites-button';
-    expect(wrapper.get(selector)).toBeTruthy();
+    const selector = '.favorites-button'
+    expect(wrapper.get(selector)).toBeTruthy()
 
-    const badge = '.badge.count';
-    expect(wrapper.get(badge).text()).toEqual('1');
-
-  });
-
-  test('Badge shows sum total items', () => {
-      const wrapper = createWrapper({
-        items: MockWishListItems,
-      })
-      const badge = '.badge.count';
-      expect(wrapper.get(badge).text()).toEqual('6');
+    const badge = '.badge.count'
+    expect(wrapper.get(badge).text()).toEqual('1')
   })
 
+  test('Badge shows sum total items', () => {
+    const wrapper = createWrapper({
+      items: MockWishListItems
+    })
+    const badge = '.badge.count'
+    expect(wrapper.get(badge).text()).toEqual('6')
+  })
 })
-

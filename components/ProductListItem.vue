@@ -1,74 +1,81 @@
 <template>
-    <div>
-        <div class="media align-items-lg-center d-flex justify-content-between flex-column flex-sm-row">
-            <div class="image-container position-relative order-1 order-sm-2 col-sm-6" style="padding: 0;">
-                <div class="wish-list-btn-container">
-                    <button v-if="onWishList"
-                            class="wish-list-btn remove-from-wish-list-btn"
-                            @click="removeFromWishList(product)">
-                        <i class="bi bi-heart-fill"></i>
-                    </button>
-                    <button v-else
-                            class="wish-list-btn add-to-wish-list-btn"
-                            @click="addToWishList(product)">
-                        <i class="bi bi-heart"></i>
-                    </button>
-                </div>
-                <client-only>
-                    <img
-                        v-lazy
-                        :data-src="getImagePath(product)"
-                        src="/placeholder-product.png"
-                        class="product-image"/>
-                </client-only>
-            </div>
-            <div class="p-4 order-2 order-sm-1 col-sm-6">
-                <h5 class="card-title">{{product.title}}</h5>
-                <p class="card-text mb-0 mb-lg-2 text-muted">
-                    {{product.description}}
-                </p>
-                <span class="text-muted">
-                    {{product.price.symbol}}
-                    {{product.price.value.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) }}
-                </span>
-            </div>
+  <div>
+    <div class="media align-items-lg-center d-flex justify-content-between flex-column flex-sm-row">
+      <div class="image-container position-relative order-1 order-sm-2 col-sm-6" style="padding: 0;">
+        <div class="wish-list-btn-container">
+          <button
+            v-if="onWishList"
+            class="wish-list-btn remove-from-wish-list-btn"
+            @click="removeFromWishList(product)"
+          >
+            <i class="bi bi-heart-fill" />
+          </button>
+          <button
+            v-else
+            class="wish-list-btn add-to-wish-list-btn"
+            @click="addToWishList(product)"
+          >
+            <i class="bi bi-heart" />
+          </button>
         </div>
-        <Nuxt />
+        <client-only>
+          <img
+            v-lazy
+            :data-src="getImagePath(product)"
+            src="/placeholder-product.png"
+            class="product-image"
+          >
+        </client-only>
+      </div>
+      <div class="p-4 order-2 order-sm-1 col-sm-6">
+        <h5 class="card-title">
+          {{ product.title }}
+        </h5>
+        <p class="card-text mb-0 mb-lg-2 text-muted">
+          {{ product.description }}
+        </p>
+        <span class="text-muted">
+          {{ product.price.symbol }}
+          {{ product.price.value.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) }}
+        </span>
+      </div>
     </div>
+    <Nuxt />
+  </div>
 </template>
 
 <script lang="ts">
 import Vue, { PropOptions } from 'vue'
-import {Product, WishListItem} from '@/types'
-import lazy from '@/plugins/directives.client';
+import { Product, WishListItem } from '@/types'
+import lazy from '@/plugins/directives.client'
 
 export default Vue.extend({
-    name: 'ProductListItem',
-    props: {
+  name: 'ProductListItem',
+  directives: {
+    lazy
+  },
+  props: {
     product: {
-        type: Object,
-        required: true
+      type: Object,
+      required: true
     } as PropOptions<Product>
-    },
-    directives: {
-        lazy
-    },
-    methods: {
-        addToWishList(item: Product): void {
-            this.$store.commit('wishList/addProduct', item);
-        },
-        removeFromWishList(item: Product): void {
-            this.$store.commit('wishList/removeProduct', item);
-        },
-        getImagePath(item: Product) : string | undefined {
-            return item.imagePath;
-        }
-    },
-    computed: {
-        onWishList() : boolean {
-            return !!this.$store.state.wishList.items.find((w: WishListItem) => this.$props.product.id === w.product.id);
-        },
+  },
+  computed: {
+    onWishList () : boolean {
+      return !!this.$store.state.wishList.items.find((w: WishListItem) => this.$props.product.id === w.product.id)
     }
+  },
+  methods: {
+    addToWishList (item: Product): void {
+      this.$store.commit('wishList/addProduct', item)
+    },
+    removeFromWishList (item: Product): void {
+      this.$store.commit('wishList/removeProduct', item)
+    },
+    getImagePath (item: Product) : string | undefined {
+      return item.imagePath
+    }
+  }
 })
 </script>
 

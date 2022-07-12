@@ -1,61 +1,59 @@
 <template>
-<section>
-  <AppHeader></AppHeader>
-  <ProductList :list="products"></ProductList>
+  <section>
+    <AppHeader />
+    <ProductList :list="products" />
     <transition name="slide-fade">
-      <WishList v-if="wishList.active" :list="wishList.items"></WishList>
-  </transition>
-</section>
+      <WishList v-if="wishList.active" :list="wishList.items" />
+    </transition>
+  </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import {Product, ProductState, WishListState, AppState} from '@/types'
+import { Product, ProductState, WishListState, AppState } from '@/types'
 
 export default Vue.extend({
-    name: "IndexPage",
-    beforeMount()  {
-
-      if (!process.browser) {
-        return;
-      }
-      const synchronizeLocalStorage = (state: AppState) => {
-        localStorage.setItem('AppState', JSON.stringify(state))
-      };
-
-      const localState: string | null = localStorage.getItem('AppState')
-
-      if (localState) {
-        const productState: ProductState = JSON.parse(localState).product
-        const wishListState: WishListState = JSON.parse(localState).wishList
-        this.$store.commit('product/setState', (productState))
-        this.$store.commit('wishList/setState', (wishListState))
-      } else {
-        this.fetchData()
-      }
-
-      this.$store.subscribe((mutation, state:AppState) => {
-          synchronizeLocalStorage(state);
-      });
-
+  name: 'IndexPage',
+  computed: {
+    products () : Product[] {
+      return this.$store.state.product.list
     },
-    methods: {
-      async fetchData(){
-          const url = "/data.json"
-          const products: Awaited<Promise<{
+    wishList (): WishListState {
+      return this.$store.state.wishList
+    }
+  },
+  beforeMount () {
+    if (!process.browser) {
+      return
+    }
+    const synchronizeLocalStorage = (state: AppState) => {
+      localStorage.setItem('AppState', JSON.stringify(state))
+    }
+
+    const localState: string | null = localStorage.getItem('AppState')
+
+    if (localState) {
+      const productState: ProductState = JSON.parse(localState).product
+      const wishListState: WishListState = JSON.parse(localState).wishList
+      this.$store.commit('product/setState', (productState))
+      this.$store.commit('wishList/setState', (wishListState))
+    } else {
+      this.fetchData()
+    }
+
+    this.$store.subscribe((mutation, state:AppState) => {
+      synchronizeLocalStorage(state)
+    })
+  },
+  methods: {
+    async fetchData () {
+      const url = '/data.json'
+      const products: Awaited<Promise<{
               data: Product[];
           }>> = await this.$http.$get(url)
-          this.$store.commit("product/setList", products.data)
-      },
-    },
-    computed: {
-      products() : Product[] {
-        return this.$store.state.product.list
-      },
-      wishList(): WishListState {
-        return this.$store.state.wishList
-      }
+      this.$store.commit('product/setList', products.data)
     }
+  }
 })
 </script>
 

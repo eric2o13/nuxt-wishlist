@@ -1,55 +1,58 @@
 <template>
-    <div class="app-wish-list-component">
-        <div class="wish-list-container">
-            <h6 class="mx-4 py-4 border-bottom">Your wish list</h6>
-            <ul class="wish-list d-block p-0">
-                <transition-group name="list">
-                    <li v-for="(item, key) in list"
-                        class="px-4"
-                        :key="key">
-                        <WishListItem :item="item"></WishListItem>
-                    </li>
-                </transition-group>
-            </ul>
-            <div class="mx-4 text-end">
-                Total: $
-                <span class="wishlist-sum-total text-dark fw-bold ">
-                    {{ total }}
-                </span>
-            </div>
-        </div>
-         <Nuxt />
+  <div class="app-wish-list-component">
+    <div class="wish-list-container">
+      <h6 class="mx-4 py-4 border-bottom">
+        Your wish list
+      </h6>
+      <ul class="wish-list d-block p-0">
+        <transition-group name="list">
+          <li
+            v-for="(item, key) in list"
+            :key="key"
+            class="px-4"
+          >
+            <WishListItem :item="item" />
+          </li>
+        </transition-group>
+      </ul>
+      <div class="mx-4 text-end">
+        Total: $
+        <span class="wishlist-sum-total text-dark fw-bold ">
+          {{ total }}
+        </span>
+      </div>
     </div>
+    <Nuxt />
+  </div>
 </template>
 
-
 <script lang="ts">
-import Vue, {PropOptions} from 'vue'
-import { WishListItem as Item } from '@/types';
-import WishListItem from "@/components/WishListItem.vue";
+import Vue, { PropOptions } from 'vue'
+import { WishListItem as Item } from '@/types'
+import WishListItem from '@/components/WishListItem.vue'
 
 export default Vue.extend({
-    name: 'WishList',
-    props: {
-        list: {
-            type: Array,
-            required: true
-        } as PropOptions<Item[]>
-    },
+  name: 'WishList',
   components: {
-      WishListItem
+    WishListItem
   },
-    computed: {
-        total() : number {
-            return this.$store.state.wishList.items.reduce((sum: number, value: Item) => {
-                    return sum + (value.quantity * value.product.price.value) }, 0)
-                .toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })
-        }
+  props: {
+    list: {
+      type: Array,
+      required: true
+    } as PropOptions<Item[]>
+  },
+  computed: {
+    total () : number {
+      return this.$store.state.wishList.items.reduce((sum: number, value: Item) => {
+        return sum + (value.quantity * value.product.price.value)
+      }, 0)
+        .toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
     }
+  }
 
 })
 </script>
-
 
 <style scoped lang="scss">
     .app-wish-list-component {
