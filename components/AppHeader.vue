@@ -25,15 +25,15 @@ export default Vue.extend({
     name: "AppHeader",
     methods: {
         toggleWishList(): void {
-            this.$store.commit("wishlist/activate", !this.wishlist.active);
+            this.$store.commit("wishList/activate", !this.wishList.active);
         },
     },
     computed: {
-        wishlist(): WishListState {
-            return this.$store.state.wishlist;
+      wishList(): WishListState {
+            return this.$store.state.wishList;
         },
         total(): number {
-            return this.$store.state.wishlist.items.reduce((sum: number, value: WishListItem) => { return sum + (value.quantity); }, 0);
+            return this.$store.state.wishList.items.reduce((sum: number, value: WishListItem) => { return sum + (value.quantity); }, 0);
         }
     },
     components: { NuxtLogo }

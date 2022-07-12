@@ -15,10 +15,10 @@
                     </button>
                 </div>
                 <client-only>
-                    <img 
-                        v-lazy  
-                        :data-src="getImagePath(product)" 
-                        src="/placeholder-product.png" 
+                    <img
+                        v-lazy
+                        :data-src="getImagePath(product)"
+                        src="/placeholder-product.png"
                         class="product-image"/>
                 </client-only>
             </div>
@@ -55,10 +55,10 @@ export default Vue.extend({
     },
     methods: {
         addToWishList(item: Product): void {
-            this.$store.commit('wishlist/addProduct', item);
+            this.$store.commit('wishList/addProduct', item);
         },
         removeFromWishList(item: Product): void {
-            this.$store.commit('wishlist/removeProduct', item);
+            this.$store.commit('wishList/removeProduct', item);
         },
         getImagePath(item: Product) : string | undefined {
             return item.imagePath;
@@ -66,7 +66,7 @@ export default Vue.extend({
     },
     computed: {
         onWishList() : boolean {
-            return !!this.$store.state.wishlist.items.find((w: WishListItem) => this.$props.product.id === w.product.id);
+            return !!this.$store.state.wishList.items.find((w: WishListItem) => this.$props.product.id === w.product.id);
         },
     }
 })

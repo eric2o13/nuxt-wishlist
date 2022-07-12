@@ -23,10 +23,13 @@
         "./*"
       ]
     },
+    "jsx": "preserve",
     "types": [
+      "@nuxt/http",
       "@nuxt/types",
+      "@nuxt/vue-app",
       "@types/node",
-      "@nuxt/http"
+      "@types/jest"
     ]
   },
   "exclude": [

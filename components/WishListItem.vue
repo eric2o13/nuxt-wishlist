@@ -48,13 +48,13 @@ export default Vue.extend({
             return path.replace('450x200', '45x20');
         },
         decreaseQuantity(item:WishListItem): void {
-            this.$store.commit('wishlist/decreaseProductQuantity', item);
+            this.$store.commit('wishList/decreaseProductQuantity', item);
         },
         increaseQuantity(item:WishListItem): void {
-            this.$store.commit('wishlist/increaseProductQuantity', item);
+            this.$store.commit('wishList/increaseProductQuantity', item);
         },
         removeFromWishList(item:WishListItem): void {
-            this.$store.commit('wishlist/removeWishListItemFromWishList', item);
+            this.$store.commit('wishList/removeWishListItemFromWishList', item);
         }
     },
 })

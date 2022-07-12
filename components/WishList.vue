@@ -1,30 +1,24 @@
 <template>
     <div class="app-wish-list-component">
-        <div v-if="list.length" class="wish-list-container">
+        <div class="wish-list-container">
             <h6 class="mx-4 py-4 border-bottom">Your wish list</h6>
             <ul class="wish-list d-block p-0">
                 <transition-group name="list">
-                    <li v-for="item in list"
+                    <li v-for="(item, key) in list"
                         class="px-4"
-                        :key="item.product.id">
+                        :key="key">
                         <WishListItem :item="item"></WishListItem>
                     </li>
                 </transition-group>
             </ul>
             <div class="mx-4 text-end">
                 Total: $
-                <span class="text-dark fw-bold ">
+                <span class="wishlist-sum-total text-dark fw-bold ">
                     {{ total }}
                 </span>
             </div>
         </div>
-        <div v-else>
-            <p class="text-center mt-4">
-                No products on wish list
-            </p>
-        </div>
          <Nuxt />
-
     </div>
 </template>
 
@@ -43,7 +37,7 @@ export default Vue.extend({
     },
     computed: {
         total() : number {
-            return this.$store.state.wishlist.items.reduce((sum: number, value: WishListItem) => {
+            return this.$store.state.wishList.items.reduce((sum: number, value: WishListItem) => {
                     return sum + (value.quantity * value.product.price.value) }, 0)
                 .toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })
         }

@@ -11,14 +11,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import {Product, ProductState, WishListState, AppState} from '@/types'
-import ProductList from '~/components/ProductList.vue'
-import WishList from '~/components/WishList.vue'
-import NuxtLogo from '~/components/NuxtLogo.vue'
 
 export default Vue.extend({
     name: "IndexPage",
-    beforeMount() {
-      
+    beforeMount()  {
+
       if (!process.browser) {
         return;
       }
@@ -27,12 +24,12 @@ export default Vue.extend({
       };
 
       const localState: string | null = localStorage.getItem('AppState')
-      
+
       if (localState) {
         const productState: ProductState = JSON.parse(localState).product
-        const wishListState: WishListState = JSON.parse(localState).wishlist
+        const wishListState: WishListState = JSON.parse(localState).wishList
         this.$store.commit('product/setState', (productState))
-        this.$store.commit('wishlist/setState', (wishListState))
+        this.$store.commit('wishList/setState', (wishListState))
       } else {
         this.fetchData()
       }
@@ -40,7 +37,7 @@ export default Vue.extend({
       this.$store.subscribe((mutation, state:AppState) => {
           synchronizeLocalStorage(state);
       });
-      
+
     },
     methods: {
       async fetchData(){
@@ -52,15 +49,13 @@ export default Vue.extend({
       },
     },
     computed: {
-      products(){
+      products() : Product[] {
         return this.$store.state.product.list
       },
-      wishList(){
-        return this.$store.state.wishlist
+      wishList(): WishListState {
+        return this.$store.state.wishList
       }
-    },
-    components: { ProductList, WishList, NuxtLogo },
-  
+    }
 })
 </script>
 
