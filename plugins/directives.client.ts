@@ -1,6 +1,4 @@
-import Vue from 'vue'
-
-const lazy = (el : HTMLImageElement, binding: Object) => {
+const lazy = (el : HTMLElement, binding: Object) => {
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {

@@ -20,5 +20,8 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue'
   ],
-  testEnvironment: 'jsdom'
+  testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    customExportConditions: ["node", "node-addons"],
+  }
 }

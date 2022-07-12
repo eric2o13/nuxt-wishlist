@@ -4,7 +4,7 @@ export const state = (): WishListState => ({
   items: [],
   active: true
 })
-  
+
 export const mutations = {
   addProduct(state: WishListState, payload: Product):void {
     const item: WishListItem = {product: payload, quantity: 1};
