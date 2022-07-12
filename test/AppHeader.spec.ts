@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import AppHeader from "@/components/AppHeader.vue";
+import NuxtLogo from "@/components/NuxtLogo.vue";
 import {WishListItem} from "@/types";
 import {MockAppState, MockWishListItem, MockWishListItems} from "@/mocks";
 
@@ -12,6 +13,9 @@ describe('AppHeader.vue', () => {
     return mount(AppHeader, {
         mocks: {
           $store
+        },
+        components: {
+          NuxtLogo
         }
     });
   };

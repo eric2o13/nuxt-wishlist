@@ -19,7 +19,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { WishListItem, WishListState } from '@/types';
-import NuxtLogo from './NuxtLogo.vue';
+import NuxtLogo from '@/components/NuxtLogo';
 
 export default Vue.extend({
     name: "AppHeader",
@@ -36,7 +36,9 @@ export default Vue.extend({
             return this.$store.state.wishList.items.reduce((sum: number, value: WishListItem) => { return sum + (value.quantity); }, 0);
         }
     },
-    components: { NuxtLogo }
+  components: {
+      NuxtLogo
+  }
 })
 </script>
 

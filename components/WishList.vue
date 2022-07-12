@@ -25,7 +25,8 @@
 
 <script lang="ts">
 import Vue, {PropOptions} from 'vue'
-import { WishListItem } from '@/types';
+import { WishListItem as Item } from '@/types';
+import WishListItem from "@/components/WishListItem.vue";
 
 export default Vue.extend({
     name: 'WishList',
@@ -33,11 +34,14 @@ export default Vue.extend({
         list: {
             type: Array,
             required: true
-        } as PropOptions<WishListItem[]>
+        } as PropOptions<Item[]>
     },
+  components: {
+      WishListItem
+  },
     computed: {
         total() : number {
-            return this.$store.state.wishList.items.reduce((sum: number, value: WishListItem) => {
+            return this.$store.state.wishList.items.reduce((sum: number, value: Item) => {
                     return sum + (value.quantity * value.product.price.value) }, 0)
                 .toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })
         }
