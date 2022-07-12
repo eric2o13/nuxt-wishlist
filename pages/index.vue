@@ -11,8 +11,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import {Product, ProductState, WishListState, AppState} from '@/types'
-import ProductList from '~/components/ProductList.vue'
-import WishList from '~/components/WishList.vue'
 
 export default Vue.extend({
     name: "IndexPage",
@@ -57,9 +55,7 @@ export default Vue.extend({
       wishList(): WishListState {
         return this.$store.state.wishList
       }
-    },
-    components: { ProductList, WishList },
-
+    }
 })
 </script>
 
