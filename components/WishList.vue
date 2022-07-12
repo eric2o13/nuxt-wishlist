@@ -4,16 +4,16 @@
             <h6 class="mx-4 py-4 border-bottom">Your wish list</h6>
             <ul class="wish-list d-block p-0">
                 <transition-group name="list">
-                    <li v-for="item in list"
+                    <li v-for="(item, key) in list"
                         class="px-4"
-                        :key="item.product.id">
+                        :key="key">
                         <WishListItem :item="item"></WishListItem>
                     </li>
                 </transition-group>
             </ul>
             <div class="mx-4 text-end">
                 Total: $
-                <span class="text-dark fw-bold ">
+                <span class="wishlist-sum-total text-dark fw-bold ">
                     {{ total }}
                 </span>
             </div>

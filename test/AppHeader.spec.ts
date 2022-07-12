@@ -30,7 +30,6 @@ describe('AppHeader.vue', () => {
   it('Has a favorites button, showing the amount of wish list items', () => {
 
     const list: WishListItem[] = [MockWishListItem];
-
     const wrapper = createWrapper({
        items: list,
     });
@@ -43,7 +42,7 @@ describe('AppHeader.vue', () => {
 
   });
 
-  test('Can contain multiple products', () => {
+  test('Badge shows sum total items', () => {
       const wrapper = createWrapper({
         items: MockWishListItems,
       })

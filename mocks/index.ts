@@ -43,8 +43,8 @@ export const MockWishListItems: WishListItem[] = [
   {
     quantity: 3,
     product: {
-      "id": 1,
-      "title": "My Title",
+      "id": 2,
+      "title": "Another product",
       "description": "A description of a product",
       "imagePath": "https://dummyimage.com/450x200/DD0/fff",
       "price": {
